@@ -32,6 +32,31 @@ def read_log(filepath, courses):
             log[date].append(topic)
     return log
 
+def add_new_course(courses):
+    course_name = input("course name: ")
+    course = Course(course_name)
+    courses[course.name] = course
+
+def add_new_topic(filepath, courses):
+    topic_name = input("topic name: ")
+    course_name = input("course name: ")
+    try:
+        course = courses[course_name]
+    except:
+        course = Course(course_name)
+    topic = Topic(topic_name, course)
+    course.topics.add(topic)
+    with open(filepath, "a") as file:
+        fieldnames = ["course", "topic", "last revised", "next revise"]
+        writer = csv.DictWriter(file, fieldnames)
+        writer.writerow({"course": course_name, "topic": topic_name, "last revised": None, "next revise": None})
+
+def add_log_entry(filepath, date, topics):
+    with open(filepath, "a") as file:
+        fieldnames = ["date", "course", "topic"]
+        writer = csv.DictWriter(file, fieldnames)
+        for topic in topics:
+            writer.writerow({"date": date, "course": topic.course.name, "topic": topic.name})
 
 def schedule_revision():
     pass

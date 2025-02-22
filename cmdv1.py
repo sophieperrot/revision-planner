@@ -9,7 +9,7 @@ import os
 import datetime
 
 from topic import Course, Topic
-from utils import read_data, read_log
+from utils import read_data, read_log, add_new_course, add_new_topic, add_log_entry
 
 
 data_filepath = os.path.join(os.getcwd(), "courses_data.csv")
@@ -53,6 +53,9 @@ def home_page():
 def todays_revision_page():
     print("\nTODAY'S REVISION\n----------------")
     [print(f" - {topic.name} ({topic.course.name})") for topic in todays_revision]
+    # # testing add_log_entry function
+    # test_topics = list(courses["statistics"].topics)
+    # add_log_entry(log_filepath, today, test_topics)
     navigation()
     
 def courses_page():
@@ -63,7 +66,7 @@ def courses_page():
         [print(f" > {topic.name}") for topic in course.topics]
         print()
     if input("add new topic (y/n): ") == "y":
-        add_new_topic()
+        add_new_topic(data_filepath, courses)
     navigation()
 
 def settings_page():
@@ -74,7 +77,7 @@ def settings_page():
 - Etc.
 """)
     if input("add new course (y/n): ") == "y":
-        add_new_course()
+        add_new_course(courses)
     navigation()
 
 def history_page():
@@ -83,22 +86,6 @@ def history_page():
         topic_names = [topic.name for topic in topics]
         print(f"{date}\n- {"\n- ".join(topic_names)}\n")
     navigation()
-
-def add_new_topic():
-    topic_name = input("topic name: ")
-    course_name = input("course name: ")
-    try:
-        course = courses[course_name]
-    except:
-        course = Course(course_name)
-        
-    topic = Topic(topic_name, course)
-    course.topics.add(topic)
-
-def add_new_course():
-    course_name = input("course name: ")
-    course = Course(course_name)
-    courses[course.name] = course
 
 
 home_page()
