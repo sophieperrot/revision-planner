@@ -5,37 +5,22 @@ Version 1: Command line interface
 - basic skeleton of revision planner app layout/pages
 - implement basic functionalities
 """
+import os
+import datetime
 
 from topic import Course, Topic
+from utils import read_data, read_log
 
-log = {} # "date": ["Topic"]
 
-# Add courses
-stats = Course("statistics")
-physics = Course("physics")
-chem = Course("chemistry")
-maths = Course("maths")
+data_filepath = os.path.join(os.getcwd(), "courses_data.csv")
+courses = read_data(data_filepath)
 
-# Add topics to each course
-stats_normal = Topic("normal distribution", stats)
-stats.topics.add(stats_normal)
-physics_waves = Topic("waves", physics)
-physics.topics.add(physics_waves)
-physics_electricity = Topic("electricity", physics)
-physics.topics.add(physics_electricity)
-chem_alkenes = Topic("alkenes", chem)
-chem.topics.add(chem_alkenes)
-maths_circles = Topic("circles", maths)
-maths.topics.add(maths_circles)
+log_filepath = os.path.join(os.getcwd(), "log.csv")
+log = read_log(log_filepath, courses) # "date": ["Topic"]
 
-# Create dictionary of all courses
-courses = {}
-for course in [stats, physics, chem, maths]:
-    courses[course.name] = course
+today = datetime.date.today().strftime("%d/%m/%Y")
+todays_revision = log[today]
 
-# Harcoding: today's revision
-todays_revision = [stats_normal, chem_alkenes, physics_waves]
-log["12/02/25"] = todays_revision
 
 def navigation():
     print("""
@@ -96,7 +81,7 @@ def history_page():
     print("\nHISTORY PAGE\n------------\n")
     for date, topics in log.items():
         topic_names = [topic.name for topic in topics]
-        print(f"{date}\t{",".join(topic_names)}")
+        print(f"{date}\n- {"\n- ".join(topic_names)}\n")
     navigation()
 
 def add_new_topic():
