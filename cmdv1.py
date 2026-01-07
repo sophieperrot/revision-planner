@@ -9,17 +9,18 @@ import os
 import datetime
 
 from topic import Course, Topic
-from utils import read_data, read_log, add_new_course, add_new_topic, add_log_entry
+from utils import fetch_courses, fetch_log, add_new_course, add_new_topic, add_log_entry
 
 
-data_filepath = os.path.join(os.getcwd(), "courses_data.csv")
-courses = read_data(data_filepath)
+courses = fetch_courses()
 
-log_filepath = os.path.join(os.getcwd(), "log.csv")
-log = read_log(log_filepath, courses) # "date": ["Topic"]
+log = fetch_log()
 
 today = datetime.date.today().strftime("%d/%m/%Y")
-todays_revision = log[today]
+try:
+    todays_revision = log[today]
+except:
+    todays_revision = []
 
 
 def navigation():
@@ -65,8 +66,10 @@ def courses_page():
         print("-"*len(course.name))
         [print(f" > {topic.name}") for topic in course.topics]
         print()
+    if input("add new course (y/n): ") == "y":
+        add_new_course(courses)
     if input("add new topic (y/n): ") == "y":
-        add_new_topic(data_filepath, courses)
+        add_new_topic(courses)
     navigation()
 
 def settings_page():
@@ -76,8 +79,6 @@ def settings_page():
 - Account information (potentially)
 - Etc.
 """)
-    if input("add new course (y/n): ") == "y":
-        add_new_course(courses)
     navigation()
 
 def history_page():

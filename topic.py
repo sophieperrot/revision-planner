@@ -8,8 +8,9 @@ class Course:
 
 class Topic:
 
-    def __init__(self, name, course):
+    def __init__(self, name, course, mastery = None):
         self.name = name
         self.course = course
         self.last_revised = None
         self.next_revise = None
+        self.mastery = mastery

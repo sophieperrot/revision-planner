@@ -1,7 +1,22 @@
 #!/usr/bin/env python3
 
+import os
 import csv
+import datetime
+
 from topic import Course, Topic
+
+def fetch_courses():
+    global data_filepath 
+    data_filepath = os.path.join(os.getcwd(), "courses_data.csv")
+    courses = read_data(data_filepath)
+    return courses
+
+def fetch_log():
+    global log_filepath
+    log_filepath = os.path.join(os.getcwd(), "log.csv")
+    log = read_log(log_filepath, courses) # "date": ["Topic"]
+    return log
 
 def read_data(filepath):
     courses = {}
@@ -37,22 +52,22 @@ def add_new_course(courses):
     course = Course(course_name)
     courses[course.name] = course
 
-def add_new_topic(filepath, courses):
-    topic_name = input("topic name: ")
+def add_new_topic(courses):
     course_name = input("course name: ")
+    topic_name = input("topic name: ")
     try:
         course = courses[course_name]
     except:
         course = Course(course_name)
     topic = Topic(topic_name, course)
     course.topics.add(topic)
-    with open(filepath, "a") as file:
+    with open(data_filepath, "a") as file:
         fieldnames = ["course", "topic", "last revised", "next revise"]
         writer = csv.DictWriter(file, fieldnames)
         writer.writerow({"course": course_name, "topic": topic_name, "last revised": None, "next revise": None})
 
-def add_log_entry(filepath, date, topics):
-    with open(filepath, "a") as file:
+def add_log_entry(date, topics):
+    with open(log_filepath, "a") as file:
         fieldnames = ["date", "course", "topic"]
         writer = csv.DictWriter(file, fieldnames)
         for topic in topics:
