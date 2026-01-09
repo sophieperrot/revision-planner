@@ -1,0 +1,82 @@
+:root {
+  --off-white: #eff9fa;
+  --off-grey-light: #57737a;
+  --off-grey-dark: #181F25;
+  --off-black: #040F0F;
+  --accent-light: #85BDBF;
+  --accent-dark: #2e4145;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  color: var(--off-black);
+}
+
+body {
+    background-color: var(--off-white);
+}
+
+/* Header */
+
+.page-heading {
+    display: inline;
+    margin: 0;
+    padding: 20px;
+}
+
+.page-name {
+    color: var(--accent-dark);
+}
+
+.action-button {
+    color: var(--accent-dark);
+    background-color: var(--accent-light);
+    border: 0px;
+    border-radius: 50%;
+    padding: 8px;
+    text-align: center;
+}
+
+.action-button:hover {
+    background-color: var(--accent-dark);
+    color: var(--off-white)
+}
+
+/* Courses */
+
+.course {
+    width: 400px;
+    margin: 20px;
+}
+
+.course-name {
+    background-color: var(--accent-dark);
+    color: var(--off-white);
+    padding: 10px;
+}
+
+/* Navigation */
+
+nav {
+    width: 90px;
+    background-color: var(--off-grey-light);
+}
+
+nav a {
+    display: block;
+    text-align: center;
+    padding: 8px;
+    color: var(--off-white);
+}
+
+nav a:hover {
+    background-color: var(--accent-dark);
+    color: var(--off-white)
+}
+
+.current-page {
+    background-color: var(--off-white);
+    color: var(--accent-dark);
+}
