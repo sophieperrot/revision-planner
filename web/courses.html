@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Courses | Revision Planner</title>
-    <link rel='stylesheet' href='courses.css'/>
+    <link rel='stylesheet' href='css/courses.css'/>
 </head>
 <body>
     <!-- Page body -->
     <span>
-        <h1>My Courses</h1>
+        <button type="button">My Courses</button>
         <div>
             <button type="button">Add</button>
             <button type="button">Edit</button>
@@ -18,19 +18,52 @@
 
     <!-- Courses -->
     <article class="course">
-        <button type="button" class="course-name">Course 1</button>
-        <ul class="modules">
-            <li>module 1</li>
-            <li>module 2</li>
-        </ul>
+        <h3 class="course-name">Course 1</h3>
+        <table class="module">
+            <thead>
+                <tr>
+                    <th>Proficiency</th>
+                    <th>Module name</th>
+                    <th>Last revision</th>
+                    <th>Next revision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>8</td>
+                    <td>Module 1</td>
+                    <td>-10</td>
+                    <td>+20</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Module 2</td>
+                    <td>0</td>
+                    <td>+2</td>
+                </tr>
+            </tbody>
+        </table>
     </article>
     <article class="course">
-        <button type="button" class="course-name">Course 2</button>
-        <ul class="modules">
-            <li>module 1</li>
-            <li>module 2</li>
-            <li>module 3</li>
-        </ul>
+        <h3 class="course-name">Course 2</h3>
+        <table class="module">
+            <thead>
+                <tr>
+                    <th>Proficiency</th>
+                    <th>Module name</th>
+                    <th>Last revision</th>
+                    <th>Next revision</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>5</td>
+                    <td>Module 1</td>
+                    <td>-</td>
+                    <td>-</td>
+                </tr>
+            </tbody>
+        </table>
     </article>
 
     <!-- Navigation -->
