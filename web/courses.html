@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Courses | Revision Planner</title>
-    <link rel='stylesheet' href='css/courses.css'/>
+    <link rel='stylesheet' href='styles.css'/>
 </head>
 <body>
     <!-- Page body -->
-    <span>
-        <button type="button">My Courses</button>
-        <div>
-            <button type="button">Add</button>
-            <button type="button">Edit</button>
+    <div class="page-heading">
+        <h1 class="page-name">My Courses</h1>
+        <div class="actions">
+            <button type="button" class="action-button">Add</button>
+            <button type="button" class="action-button">Edit</button>
         </div>
-    </span>
+    </div>
+
+    <br>
 
     <!-- Courses -->
     <article class="course">
@@ -30,8 +32,8 @@
             </thead>
             <tbody>
                 <tr>
-                    <td>8</td>
-                    <td>Module 1</td>
+                    <td class="proficiency">8</td>
+                    <td class="module-name">Module 1</td>
                     <td>-10</td>
                     <td>+20</td>
                 </tr>
@@ -67,15 +69,15 @@
     </article>
 
     <!-- Navigation -->
-    <div class="navigation">
-        <nav class="navigation">
-            <!-- TODO: make these icons -->
-            <a href="index.html">Home</a>
-            <a href="courses.html">My courses</a>
-            <a href="log.html">Log</a>
-            <a href="settings.html">Settings</a>
-        </nav>
-    </div>
+    <nav>
+        <!-- TODO: make these icons -->
+        <a href="index.html">Home</a>
+        <a href="courses.html" class="current-page">My courses</a>
+        <a href="log.html">Log</a>
+        <a href="settings.html">Settings</a>
+    </nav>
+
+    <br>
 
     <!-- Footer -->
     <footer>
