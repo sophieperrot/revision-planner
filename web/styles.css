@@ -20,7 +20,7 @@ body {
 
 /* Header */
 
-.page-heading {
+.page-header {
     display: inline;
     margin: 0;
     padding: 20px;
@@ -62,6 +62,7 @@ body {
 nav {
     width: 90px;
     background-color: var(--off-grey-light);
+    border: 2px solid var(--off-grey-light);
 }
 
 nav a {
@@ -73,7 +74,7 @@ nav a {
 
 nav a:hover {
     background-color: var(--accent-dark);
-    color: var(--off-white)
+    color: var(--off-white);
 }
 
 .current-page {
