@@ -5,68 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Courses | Revision Planner</title>
     <link rel='stylesheet' href='styles.css'/>
+    <script src="courses.js" delay></script>
 </head>
 <body>
     <!-- Page heading -->
     <div class="page-header">
         <h1 class="page-name">My Courses</h1>
         <div class="actions">
-            <button type="button" class="action-button">Add</button>
-            <button type="button" class="action-button">Edit</button>
+            <button type="button" class="action-button" id="add-courses">Add</button>
+            <button type="button" class="action-button" id="edit-courses">Edit</button>
         </div>
     </div>
+
+    <!-- Add course (& modules) which should be a popup -->
+    <form id="add-course-form">
+        <input name="course-name" placeholder="Enter course name">
+        <input name="course-modules" placeholder="Enter modules separated by commas">
+        <input type="submit" name="Add">
+    </form>
 
     <br>
 
     <!-- Courses -->
-    <article class="course">
-        <h3 class="course-name">Course 1</h3>
-        <table class="module">
-            <thead>
-                <tr>
-                    <th>Proficiency</th>
-                    <th>Module name</th>
-                    <th>Last revision</th>
-                    <th>Next revision</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td class="proficiency">8</td>
-                    <td class="module-name">Module 1</td>
-                    <td>-10</td>
-                    <td>+20</td>
-                </tr>
-                <tr>
-                    <td>3</td>
-                    <td>Module 2</td>
-                    <td>0</td>
-                    <td>+2</td>
-                </tr>
-            </tbody>
-        </table>
-    </article>
-    <article class="course">
-        <h3 class="course-name">Course 2</h3>
-        <table class="module">
-            <thead>
-                <tr>
-                    <th>Proficiency</th>
-                    <th>Module name</th>
-                    <th>Last revision</th>
-                    <th>Next revision</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>5</td>
-                    <td>Module 1</td>
-                    <td>-</td>
-                    <td>-</td>
-                </tr>
-            </tbody>
-        </table>
-    </article>
+    <section id="courses-display"></section>
 
     <br>
 
