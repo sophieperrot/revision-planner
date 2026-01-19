@@ -12,7 +12,7 @@ let coursework = [
                 module: "Module 2",
                 proficiency: 3,
                 lastRevision: 0,
-                nextRevision: 20,
+                nextRevision: +2,
             }]
     },
     // {
@@ -32,8 +32,8 @@ let coursework = [
 // RENDER COURSES
 function renderCourses() {
     const container = document.getElementById("courses-display");
-    // container.innerHTML = "";
-    coursework.forEach(course => {
+    container.innerHTML = "";
+    coursework.forEach((course) => {
         const courseArticle = document.createElement("article");
         container.appendChild(courseArticle);
         courseArticle.classList.add("course");
@@ -65,41 +65,42 @@ function renderCourses() {
 
             let nameCell = moduleEntry.insertCell(1);
             nameCell.classList.add("module-name");
+            nameCell.textContent = moduleInfo.module;
             moduleEntry.appendChild(nameCell);
 
             let lastRevisionCell = moduleEntry.insertCell(2);
             lastRevisionCell.classList.add("last-revision");
+            lastRevisionCell.textContent = moduleInfo.lastRevision;
             moduleEntry.appendChild(lastRevisionCell);
 
             let nextRevisionCell = moduleEntry.insertCell(3);
             nextRevisionCell.classList.add("next-revision");
+            nextRevisionCell.textContent = moduleInfo.nextRevision;
             moduleEntry.appendChild(nextRevisionCell);
         })
-
-        // <tr>
-        //     <td class="proficiency">8</td>
-        //     <td class="module-name">Module 1</td>
-        //     <td>-10</td>
-        //     <td>+20</td>
-        // </tr>
-        // <tr>
-        //     <td>3</td>
-        //     <td>Module 2</td>
-        //     <td>0</td>
-        //     <td>+2</td>
-        // </tr>
     });
 }
 
 // ADD COURSES POPUP
-// const addCoursePopup = document.getElementById("add-course-form")
-// addCoursePopup.addEventListener("submit", e => {
-//     let newCourse = prompt("Enter new course name");
-//     coursework.push({
-//         name: newCourse,
-//         modules: []
-//     })
-//     renderCourses();
-// })
+const addCoursePopup = document.getElementById("add-course-form")
+addCoursePopup.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let moduleList = [];
+    const modules = addCoursePopup.elements[1].value.split(", ");
+    modules.forEach((moduleName) => {
+        moduleList.push({
+            module: moduleName,
+            proficiency: 0,
+            lastRevision: 0,
+            nextRevision: 0
+        });
+    });
+    coursework.push({
+        name: addCoursePopup.elements[0].value,
+        modules: moduleList
+    });
+    console.log(coursework);
+    renderCourses();
+})
 
 renderCourses();
