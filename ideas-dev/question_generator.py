@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
 import re
+import random
 
 """
 EXAMPLE QUESTION
@@ -15,12 +16,27 @@ Find the equation of the tangent to the curve at the point P({x}, {y}).
 Write your answer in the form y=mx+c, where m and c are integers to be found. [5]
 """
 
-variables = {}
+
 def parse_variables(input):
+    variables = {}
     input_variables = re.findall("{([a-z0-9]+),([^\}]+)}", input)
     for var_name, rule in input_variables:
         if var_name not in variables.keys():
             variables[var_name] = rule
     return variables
 
-print(parse_variables(example_input))
+def parse_rule(rule):
+    rule_type, rule_params = re.split(":", rule)
+    if rule_type == "range":
+        start, end = re.split(",", rule_params)
+        return random.randint(int(start), int(end))
+
+variables = parse_variables(example_input)
+for variable, rule in variables.items():
+    print(parse_rule(rule))
+
+def generate_new_question(question_text, variables):
+    for variable, rule in variables.value():
+        pattern = "{" + variable + ","
+        new_val = str(parse_rule(rule))
+    new_question = re.sub(pattern, new_val, question_text)
