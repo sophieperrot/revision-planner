@@ -10,14 +10,17 @@ Write your answer in the form y=mx+c, where m and c are integers to be found. [5
 """
 
 example_input = """
-y={a}x^3+{b}x^2+{c}x+{d}
+y={a,range:0,10}x^3+{b,range:0,5}x^2+{c}x+{d}
 Find the equation of the tangent to the curve at the point P({x}, {y}).
 Write your answer in the form y=mx+c, where m and c are integers to be found. [5]
 """
 
-variables = set()
+variables = {}
 def parse_variables(input):
-   return re.findall("{([a-z0-9]+)}", input)
-
+    input_variables = re.findall("{([a-z0-9]+),([^\}]+)}", input)
+    for var_name, rule in input_variables:
+        if var_name not in variables.keys():
+            variables[var_name] = rule
+    return variables
 
 print(parse_variables(example_input))
