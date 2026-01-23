@@ -11,8 +11,8 @@ Write your answer in the form y=mx+c, where m and c are integers to be found. [5
 """
 
 example_input = """
-y={a,range:0,10}x^3+{b,range:0,5}x^2+{c}x+{d}
-Find the equation of the tangent to the curve at the point P({x}, {y}).
+y={a,range:1,10}x^3+{b,range:0,5}x^2+{c,range:0,15}x+{d,range:0,20}
+Find the equation of the tangent to the curve at the point P({x,range:4,10}, {y}).
 Write your answer in the form y=mx+c, where m and c are integers to be found. [5]
 """
 
@@ -31,11 +31,12 @@ def parse_rule(rule):
         start, end = re.split(",", rule_params)
         return random.randint(int(start), int(end))
 
-def generate_new_question(question_text, variables):
-    for variable, rule in variables.value():
-        pattern = "{" + variable + ","
+def generate_new_question(question_template, variables):
+    for variable, rule in variables.items():
+        pattern = "{" + variable + "," + rule + "}"
         new_val = str(parse_rule(rule))
-    new_question = re.sub(pattern, new_val, question_text)
+        question_template = re.sub(pattern, new_val, question_template) 
+    return question_template
 
 variables = parse_variables(example_input)
 print(generate_new_question(example_input, variables))
