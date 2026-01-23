@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+TODO list
+# make the substitute value into variable in an equation work for negative numbers (i.e. no more +-)
+# expression/formula rule (eg generate y value given expression and x value)
+# complex rules: nested, relational, conditional, dependent rules
+"""
+
 import re
 import random
 
