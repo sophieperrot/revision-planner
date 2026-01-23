@@ -31,12 +31,11 @@ def parse_rule(rule):
         start, end = re.split(",", rule_params)
         return random.randint(int(start), int(end))
 
-variables = parse_variables(example_input)
-for variable, rule in variables.items():
-    print(parse_rule(rule))
-
 def generate_new_question(question_text, variables):
     for variable, rule in variables.value():
         pattern = "{" + variable + ","
         new_val = str(parse_rule(rule))
     new_question = re.sub(pattern, new_val, question_text)
+
+variables = parse_variables(example_input)
+print(generate_new_question(example_input, variables))
