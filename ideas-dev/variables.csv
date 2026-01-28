@@ -1,0 +1,5 @@
+name,rule
+a,range:1-10
+b,range:0-5
+c,range:0-15
+d,range:0-20
