@@ -1,6 +1,7 @@
 let coursework = [
     {
         name: "Course 1",
+        id: "course-1",
         modules: [
             {
                 module: "Module 1",
@@ -37,6 +38,7 @@ function renderCourses() {
         const courseArticle = document.createElement("article");
         container.appendChild(courseArticle);
         courseArticle.classList.add("course");
+        courseArticle.setAttribute("id", course.id);
         
         // TODO: need to not use innerHTML but this will do for now
         courseArticle.innerHTML = `
@@ -54,7 +56,7 @@ function renderCourses() {
                 </tbody>
             </table>
         `;
-        const moduleTable = container.querySelector(".module");
+        const moduleTable = container.querySelector(`#${course.id} > .module`);
         course.modules.forEach(moduleInfo => {
             let moduleEntry = moduleTable.insertRow(-1);
 
@@ -95,8 +97,10 @@ addCoursePopup.addEventListener("submit", (e) => {
             nextRevision: 0
         });
     });
+    let name_text = addCoursePopup.elements[0].value;
     coursework.push({
-        name: addCoursePopup.elements[0].value,
+        name: name_text,
+        id: name_text.split(/\s+/).join("-"),
         modules: moduleList
     });
     console.log(coursework);
