@@ -21,7 +21,7 @@ Write your answer in the form y=mx+c, where m and c are integers to be found. [5
 
 example_input = """
 y={a}x^3+{b}x^2+{c}x+{d}
-Find the equation of the tangent to the curve at the point P({x,range:4,10}, {y}).
+Find the equation of the tangent to the curve at the point P({x}, {y}).
 Write your answer in the form y=mx+c, where m and c are integers to be found. [5]
 """
 VARIABLES_FILENAME = os.path.join(os.getcwd(), "variables.csv")
@@ -36,9 +36,14 @@ def parse_variables(var_file):
 
 def parse_rule(rule):
     rule_type, rule_params = re.split(":", rule)
-    if rule_type == "range":
-        start, end = re.split("-", rule_params)
-        return random.randint(int(start), int(end))
+    match rule_type:
+        case "range":
+            start, end = re.split("-", rule_params)
+            return random.randint(int(start), int(end))
+        case "equation":
+            print(rule)
+            # TODO: figure something out
+        
 
 def generate_new_question(question_template, var_file):
     variables = parse_variables(var_file)
