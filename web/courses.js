@@ -87,6 +87,13 @@ function renderCourses() {
 const addCoursePopup = document.getElementById("add-course-form")
 addCoursePopup.addEventListener("submit", (e) => {
     e.preventDefault();
+    let name_text = addCoursePopup.elements[0].value;
+    for (let key in coursework) {
+        if (coursework[key].name === name_text) {
+            console.log("already exists")
+        }
+    }
+
     let moduleList = [];
     const modules = addCoursePopup.elements[1].value.split(", ");
     modules.forEach((moduleName) => {
@@ -97,7 +104,6 @@ addCoursePopup.addEventListener("submit", (e) => {
             nextRevision: 0
         });
     });
-    let name_text = addCoursePopup.elements[0].value;
     coursework.push({
         name: name_text,
         id: name_text.split(/\s+/).join("-"),
